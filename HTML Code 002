@@ -1,0 +1,139 @@
+<div id="math-case-study-quiz">
+  <section>
+    <h2>Case Study 2: Relations and Functions</h2>
+    <p>
+      In a class of 12th-grade students, the teacher wants to examine the friendship patterns among the students to understand social dynamics. Let the set of boys in the class be <strong>B = {b₁, b₂, b₃}</strong> and the set of girls be <strong>G = {g₁, g₂, g₃, g₄}</strong>. A relation <strong>F</strong> is defined from <strong>B</strong> to <strong>G</strong>, where <em>(bᵢ, gⱼ)</em> means boy <em>bᵢ</em> considers girl <em>gⱼ</em> as a friend. The relation is given by the set <strong>{(b₁, g₁), (b₁, g₂), (b₂, g₂), (b₂, g₃), (b₃, g₄)}</strong>. Based on this, answer the following multiple-choice questions:
+    </p>
+  </section>
+
+  <form id="quiz-form">
+    <ol>
+      <li>
+        <p>What is the domain of the relation F?</p>
+        <label><input type="radio" name="q1" value="a"> (a) {b₁, b₂, b₃}</label><br>
+        <label><input type="radio" name="q1" value="b"> (b) {g₁, g₂, g₃, g₄}</label><br>
+        <label><input type="radio" name="q1" value="c"> (c) {b₁, b₂}</label><br>
+        <label><input type="radio" name="q1" value="d"> (d) {b₁, b₂, b₃, g₁, g₂, g₃, g₄}</label>
+        <p class="solution" style="display:none;"><strong>Answer:</strong> (a) {b₁, b₂, b₃} — Domain is the set of all first elements (boys).</p>
+      </li>
+
+      <li>
+        <p>What is the range of the relation F?</p>
+        <label><input type="radio" name="q2" value="a"> (a) {b₁, b₂, b₃}</label><br>
+        <label><input type="radio" name="q2" value="b"> (b) {g₁, g₂, g₃, g₄}</label><br>
+        <label><input type="radio" name="q2" value="c"> (c) {g₁, g₂, g₃, g₄}</label><br>
+        <label><input type="radio" name="q2" value="d"> (d) {b₁, g₁, g₂, g₃, g₄}</label>
+        <p class="solution" style="display:none;"><strong>Answer:</strong> (c) {g₁, g₂, g₃, g₄} — Range includes all second elements in the relation.</p>
+      </li>
+
+      <li>
+        <p>Determine the codomain of the relation F.</p>
+        <label><input type="radio" name="q3" value="a"> (a) {b₁, b₂, b₃}</label><br>
+        <label><input type="radio" name="q3" value="b"> (b) {g₁, g₂, g₃, g₄}</label><br>
+        <label><input type="radio" name="q3" value="c"> (c) {g₁, g₂, g₃}</label><br>
+        <label><input type="radio" name="q3" value="d"> (d) {b₁, b₂, b₃, g₁, g₂, g₃, g₄}</label>
+        <p class="solution" style="display:none;"><strong>Answer:</strong> (b) {g₁, g₂, g₃, g₄} — Codomain is the set G (all girls).</p>
+      </li>
+
+      <li>
+        <p>How many elements does the relation F have?</p>
+        <label><input type="radio" name="q4" value="a"> (a) 4</label><br>
+        <label><input type="radio" name="q4" value="b"> (b) 5</label><br>
+        <label><input type="radio" name="q4" value="c"> (c) 6</label><br>
+        <label><input type="radio" name="q4" value="d"> (d) 3</label>
+        <p class="solution" style="display:none;"><strong>Answer:</strong> (b) 5 — There are 5 ordered pairs in the relation.</p>
+      </li>
+
+      <li>
+        <p>Is the relation F a function from B to G?</p>
+        <label><input type="radio" name="q5" value="a"> (a) Yes</label><br>
+        <label><input type="radio" name="q5" value="b"> (b) No</label><br>
+        <label><input type="radio" name="q5" value="c"> (c) Cannot be determined</label><br>
+        <label><input type="radio" name="q5" value="d"> (d) Only if B has more elements</label>
+        <p class="solution" style="display:none;"><strong>Answer:</strong> (b) No — A function assigns only one value to each element in the domain. Here, b₁ maps to two girls.</p>
+      </li>
+    </ol>
+
+    <button type="button" onclick="submitQuiz()">Submit</button>
+
+    <div id="quiz-result" style="display:none; margin-top:1em;">
+      <p><strong>Correct Answers:</strong> <span id="correct-count"></span></p>
+      <p><strong>Incorrect Answers:</strong> <span id="incorrect-count"></span></p>
+      <p><strong>Score:</strong> <span id="score-percent"></span>%</p>
+    </div>
+  </form>
+
+  <style>
+    #math-case-study-quiz {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: auto;
+      padding: 10px;
+    }
+    #math-case-study-quiz h2 {
+      font-size: 1.5em;
+      color: #2a4b7c;
+    }
+    #math-case-study-quiz ol {
+      padding-left: 20px;
+    }
+    #math-case-study-quiz label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    #math-case-study-quiz .solution {
+      background-color: #f0f8ff;
+      border-left: 4px solid #4caf50;
+      padding: 8px;
+      margin-top: 8px;
+    }
+    #math-case-study-quiz button {
+      background-color: #2a4b7c;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    #math-case-study-quiz button:hover {
+      background-color: #1e365c;
+    }
+  </style>
+
+  <script>
+    function submitQuiz() {
+      const answers = {
+        q1: "a",
+        q2: "c",
+        q3: "b",
+        q4: "b",
+        q5: "b"
+      };
+
+      let correct = 0;
+      for (let q in answers) {
+        const selected = document.querySelector('input[name="' + q + '"]:checked');
+        if (selected && selected.value === answers[q]) {
+          correct++;
+        }
+      }
+
+      const total = Object.keys(answers).length;
+      const incorrect = total - correct;
+      const score = (correct * 2 / (total * 2)) * 100;
+
+      document.getElementById("correct-count").innerText = correct;
+      document.getElementById("incorrect-count").innerText = incorrect;
+      document.getElementById("score-percent").innerText = score.toFixed(2);
+
+      // Show all solutions
+      const solutions = document.querySelectorAll("#math-case-study-quiz .solution");
+      solutions.forEach(function (el) {
+        el.style.display = "block";
+      });
+
+      document.getElementById("quiz-result").style.display = "block";
+    }
+  </script>
+</div>
