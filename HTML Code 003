@@ -1,0 +1,143 @@
+<div id="math-case-study-quiz">
+  <style>
+    #math-case-study-quiz {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: auto;
+    }
+    #math-case-study-quiz h3 {
+      color: #2c3e50;
+    }
+    #math-case-study-quiz .question {
+      margin-bottom: 20px;
+      padding: 10px;
+      border-left: 4px solid #2980b9;
+      background: #f9f9f9;
+    }
+    #math-case-study-quiz label {
+      display: block;
+      margin-left: 20px;
+    }
+    #math-case-study-quiz .solution {
+      display: none;
+      margin-top: 10px;
+      background: #eaf7e1;
+      padding: 10px;
+      border-left: 4px solid #27ae60;
+    }
+    #math-case-study-quiz .results {
+      display: none;
+      margin-top: 20px;
+      background: #f0f0f0;
+      padding: 15px;
+      border-left: 5px solid #34495e;
+    }
+    #math-case-study-quiz button {
+      padding: 10px 20px;
+      background: #2980b9;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    #math-case-study-quiz button:hover {
+      background: #1f5c87;
+    }
+  </style>
+
+  <h3>Case Study 3: Library System & Relations</h3>
+  <p>A library system is tracking which books are borrowed by Grade 12 students. Let the set of students be S = {s₁, s₂, s₃, s₄} and the set of books be B = {b₁, b₂, b₃}. A relation R is defined from S to B as follows: R = {(s₁, b₁), (s₁, b₂), (s₂, b₃), (s₃, b₂), (s₄, b₁), (s₄, b₃)}.</p>
+
+  <form id="quizForm">
+    <!-- Question 1 -->
+    <div class="question">
+      <strong>1. What is the domain of the relation R?</strong>
+      <label><input type="radio" name="q1" value="a"> a. {b₁, b₂, b₃}</label>
+      <label><input type="radio" name="q1" value="b"> b. {s₁, s₂, s₃, s₄}</label>
+      <label><input type="radio" name="q1" value="c"> c. {s₁, s₂, s₃}</label>
+      <label><input type="radio" name="q1" value="d"> d. {s₁, s₂, b₁, b₂}</label>
+      <div class="solution" data-answer="b">✔️ Correct Answer: b — The domain is the set of first elements (students).</div>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="question">
+      <strong>2. What is the range of the relation R?</strong>
+      <label><input type="radio" name="q2" value="a"> a. {b₁, b₂, b₃}</label>
+      <label><input type="radio" name="q2" value="b"> b. {s₁, s₂, s₃, s₄}</label>
+      <label><input type="radio" name="q2" value="c"> c. {s₁, s₂, b₁, b₂}</label>
+      <label><input type="radio" name="q2" value="d"> d. {b₁, b₂}</label>
+      <div class="solution" data-answer="a">✔️ Correct Answer: a — The range is the set of second elements (books).</div>
+    </div>
+
+    <!-- Question 3 -->
+    <div class="question">
+      <strong>3. Determine the codomain of the relation R.</strong>
+      <label><input type="radio" name="q3" value="a"> a. {b₁, b₂, b₃}</label>
+      <label><input type="radio" name="q3" value="b"> b. {s₁, s₂, s₃, s₄}</label>
+      <label><input type="radio" name="q3" value="c"> c. {s₁, s₂, b₁, b₂}</label>
+      <label><input type="radio" name="q3" value="d"> d. {b₁, b₂}</label>
+      <div class="solution" data-answer="a">✔️ Correct Answer: a — Codomain is the full target set (books) in the relation.</div>
+    </div>
+
+    <!-- Question 4 -->
+    <div class="question">
+      <strong>4. How many ordered pairs are there in the relation R?</strong>
+      <label><input type="radio" name="q4" value="a"> a. 4</label>
+      <label><input type="radio" name="q4" value="b"> b. 6</label>
+      <label><input type="radio" name="q4" value="c"> c. 5</label>
+      <label><input type="radio" name="q4" value="d"> d. 3</label>
+      <div class="solution" data-answer="b">✔️ Correct Answer: b — There are 6 ordered pairs in the relation.</div>
+    </div>
+
+    <!-- Question 5 -->
+    <div class="question">
+      <strong>5. Is the relation R a function from S to B?</strong>
+      <label><input type="radio" name="q5" value="a"> a. Yes</label>
+      <label><input type="radio" name="q5" value="b"> b. No</label>
+      <label><input type="radio" name="q5" value="c"> c. Only if S has more elements</label>
+      <label><input type="radio" name="q5" value="d"> d. Cannot be determined</label>
+      <div class="solution" data-answer="b">✔️ Correct Answer: b — A function requires one output per input. s₁ and s₄ have multiple books.</div>
+    </div>
+
+    <button type="button" onclick="submitQuiz()">Submit</button>
+
+    <div class="results" id="resultsBox">
+      <p><strong>Total Correct:</strong> <span id="correctCount"></span></p>
+      <p><strong>Total Incorrect:</strong> <span id="incorrectCount"></span></p>
+      <p><strong>Score:</strong> <span id="scorePercent"></span>%</p>
+    </div>
+  </form>
+
+  <script>
+    function submitQuiz() {
+      const answers = {
+        q1: "b",
+        q2: "a",
+        q3: "a",
+        q4: "b",
+        q5: "b"
+      };
+      let correct = 0;
+      let total = Object.keys(answers).length;
+
+      for (let key in answers) {
+        const selected = document.querySelector('input[name="' + key + '"]:checked');
+        const solution = document.querySelector('.solution[data-answer="' + answers[key] + '"]');
+        if (selected) {
+          if (selected.value === answers[key]) correct++;
+        }
+        if (solution) solution.style.display = "block";
+      }
+
+      let incorrect = total - correct;
+      let percent = (correct * 2 * 100) / (total * 2);
+
+      document.getElementById("correctCount").textContent = correct;
+      document.getElementById("incorrectCount").textContent = incorrect;
+      document.getElementById("scorePercent").textContent = percent;
+
+      document.getElementById("resultsBox").style.display = "block";
+    }
+  </script>
+</div>
